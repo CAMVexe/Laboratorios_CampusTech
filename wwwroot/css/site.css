@@ -29,3 +29,100 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Contenedor de la tabla: fondo azul oscuro y efecto de tarjeta */
+.my-table-wrapper-azul-verde {
+    padding: 0.75rem;
+    border-radius: 0.6rem;
+    background: linear-gradient(135deg, #03101f 0%, #05233a 100%);
+    box-shadow: 0 0.5rem 1rem rgba(3, 10, 18, 0.45);
+    margin-bottom: 1rem;
+}
+
+/* Tema de la tabla: azul oscuro con detalles verdes */
+.my-table-theme-azul-verde {
+    /* Colores base para la tabla (Bootstrap 5 lee estas variables) */
+    --bs-table-bg: #0b5ed7 0%; /* fondo de filas */
+    --bs-table-striped-bg: #198754 100%; /* filas alternas */
+    --bs-table-hover-bg: #0d2b45; /* hover */
+    --bs-table-color: #e9f5ff; /* texto */
+    --bs-table-border-color: #0f3a4f; /* bordes sutiles */
+
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--bs-table-color, #e9f5ff);
+    background-color: var(--bs-table-bg, #07192b);
+    border-radius: 0.4rem;
+    overflow: hidden;
+}
+
+/* Cabecera: azul oscuro con acento verde */
+.my-table-theme-azul-verde thead {
+        background: linear-gradient(90deg, #0b3b5c 0%, #0f7152 100%);
+        color: #fff;
+    }
+
+.my-table-theme-azul-verde thead th {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 0;
+  text-align: left;
+}
+
+/* Celdas y filas */
+.my-table-theme-azul-verde tbody td {
+  padding: 0.65rem 1rem;
+  vertical-align: middle;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  color: #e9f5ff;
+  font-size: 0.92rem;
+}
+
+/* Filas alternas */
+.my-table-theme-azul-verde tbody tr:nth-child(even) {
+  background-color: #0a2238;
+}
+
+/* Hover sutil */
+.my-table-theme-azul-verde tbody tr:hover {
+  background-color: rgba(27,110,194,0.06);
+  transform: translateY(-1px);
+  transition: background-color .12s ease, transform .12s ease;
+}
+
+/* Ajustes para que Bootstrap .table-striped no choque con nuestro color */
+.my-table-theme-azul-verde.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #07192b;
+}
+
+/* Pequeños badges para laboratorio (opcional al mostrar LabName) */
+.my-table-lab-badge {
+  display: inline-block;
+  padding: .18rem .5rem;
+  border-radius: .35rem;
+  background: rgba(15,113,82,0.12);
+  color: #dff6ea;
+  font-size: .82rem;
+  font-weight: 600;
+  border: 1px solid rgba(15,113,82,0.22);
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .my-table-theme-azul-verde thead {
+    display: none;
+  }
+  .my-table-theme-azul-verde tbody td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .my-table-theme-azul-verde tbody tr {
+    margin-bottom: 0.75rem;
+    display: block;
+    border-radius: 0.45rem;
+    background-color: #07192b;
+    padding: .5rem;
+  }
+}

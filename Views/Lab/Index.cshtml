@@ -4,58 +4,70 @@
     ViewData["Title"] = "Laboratorios";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container py-4">
+    <div class="lab-card">
+        <div class="lab-card-header">
+            <div>
+                <h4 class="mb-0">@ViewData["Title"]</h4>
+                <div class="lab-card-subtitle">Lista de reservas — Facultad de Ingeniería Informática</div>
+            </div>
+            <div>
+                <a class="btn btn-primary btn-sm" asp-controller="Lab" asp-action="Create">Nueva Reserva</a>
+            </div>
+        </div>
 
-@if (TempData["Mensaje"] is string msg)
-{
-    <div class="alert alert-success" role="alert">
-        @msg
-    </div>
-}
-
-<p>
-    <a class="btn btn-primary" asp-controller="Lab" asp-action="Create">Formulario Reserva</a>
-</p>
-
-@if (!Model.Any())
-{
-    <p>No existe ninguna reservación de momento</p>
-}
-else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Código Reserva</th>
-                <th>Nombre Profesor</th>
-                <th>Correo Institucional</th>
-                <th>Laboratorio</th>
-                <th>Fecha Reserva</th>
-                <th>Hora Inicio</th>
-                <th>Hora Fin</th>
-                <th>Motivo</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var l in Model)
+        <div class="lab-card-body">
+            @if (TempData["Mensaje"] is string msg)
             {
-                <tr>
-                    <td>@l.CodRes</td>
-                    <td>@l.ProfName</td>
-                    <td>@l.InstEmail</td>
-                    <td>@l.LabName</td>
-                    <td>@l.FechaRes.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        @(l.HoraInicio.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture)
-                            .Replace("AM", "a.m").Replace("PM", "p.m"))
-                    </td>
-                    <td>
-                        @(l.HoraFin.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture)
-                            .Replace("AM", "a.m").Replace("PM", "p.m"))
-                    </td>
-                    <td>@l.Motivo</td>
-                </tr>
+                <div class="alert alert-success" role="alert">
+                    @msg
+                </div>
             }
-        </tbody>
-    </table>
-}
+
+            @if (!Model.Any())
+            {
+                <div class="lab-empty">No existe ninguna reservación de momento</div>
+            }
+            else
+            {
+                <div class="table-responsive my-table-wrapper-azul-verde">
+                    <table class="my-table-theme-azul-verde table table-striped table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Código Reserva</th>
+                                <th>Nombre Profesor</th>
+                                <th>Correo Institucional</th>
+                                <th>Laboratorio</th>
+                                <th>Fecha Reserva</th>
+                                <th>Hora Inicio</th>
+                                <th>Hora Fin</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var l in Model)
+                            {
+                                <tr>
+                                    <td>@l.CodRes</td>
+                                    <td>@l.ProfName</td>
+                                    <td>@l.InstEmail</td>
+                                    <td><span class="my-table-lab-badge">@l.LabName</span></td>
+                                    <td>@l.FechaRes.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        @(l.HoraInicio.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture)
+                                            .Replace("AM", "a.m").Replace("PM", "p.m"))
+                                    </td>
+                                    <td>
+                                        @(l.HoraFin.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture)
+                                            .Replace("AM", "a.m").Replace("PM", "p.m"))
+                                    </td>
+                                    <td>@l.Motivo</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
