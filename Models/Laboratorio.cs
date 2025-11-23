@@ -36,6 +36,5 @@ namespace Laboratorios_CampusTech.Models
         [Required(ErrorMessage = "El código de la reserva es obligatorio")]
         [RegularExpression(@"^RES-\d{3}$", ErrorMessage = "El código de la reserva debe tener el formato 'RES-' seguido por 3 dígitos")]
         public string CodRes { get; set; } = string.Empty;
-
     }
 }
