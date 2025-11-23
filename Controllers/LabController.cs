@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Laboratorios_CampusTech.Models;
+using Laboratorios_CampusTech.Data;
 
 namespace Laboratorios_CampusTech.Controllers
 {
     public class LabController : Controller
     {
-        private static List<Laboratorio> _reservas = new List<Laboratorio>();
-
         private readonly List<string> _labsValidos = new List<string>
         {
             "Lab-01", "Lab-02", "Lab-03", "Lab-Redes", "Lab-IA"
@@ -14,7 +13,7 @@ namespace Laboratorios_CampusTech.Controllers
 
         public IActionResult Index()
         {
-            return View(_reservas);
+            return View(ReservaData.GetAll());
         }
 
         public IActionResult Create()
@@ -43,7 +42,7 @@ namespace Laboratorios_CampusTech.Controllers
                 ModelState.AddModelError("HoraFin", "La hora de fin debe ser mayor que la hora de inicio.");
             }
 
-            if (_reservas.Any(r => r.CodRes == reserva.CodRes))
+            if (ReservaData.ExisteCodigo(reserva.CodRes))
             {
                 ModelState.AddModelError("CodRes", "El código de reserva ya existe.");
             }
@@ -53,7 +52,7 @@ namespace Laboratorios_CampusTech.Controllers
                 return View(reserva);
             }
 
-            _reservas.Add(reserva);
+            ReservaData.Add(reserva);
 
             TempData["Mensaje"] = $"Reserva '{reserva.CodRes}' creada exitosamente.";
 
@@ -61,3 +60,4 @@ namespace Laboratorios_CampusTech.Controllers
         }
     }
 }
+
