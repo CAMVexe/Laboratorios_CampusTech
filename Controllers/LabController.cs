@@ -3,7 +3,7 @@ using Laboratorios_CampusTech.Models;
 
 namespace Laboratorios_CampusTech.Controllers
 {
-    public class LaboratorioController : Controller
+    public class LabController : Controller
     {
         private static List<Laboratorio> _reservas = new List<Laboratorio>();
 
@@ -54,6 +54,8 @@ namespace Laboratorios_CampusTech.Controllers
             }
 
             _reservas.Add(reserva);
+
+            TempData["Mensaje"] = $"Reserva '{reserva.CodRes}' creada exitosamente.";
 
             return RedirectToAction("Index");
         }

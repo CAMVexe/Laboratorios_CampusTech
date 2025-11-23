@@ -1,0 +1,67 @@
+﻿@model Laboratorios_CampusTech.Models.Laboratorio
+
+@{
+    ViewData["Title"] = "Formulario de Reserva de Laboratorio";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @*Codigo de reserva*@
+    <div class="mb-3">
+        <label asp-for="CodRes" class="form-label"></label>
+        <input asp-for="CodRes" class="form-control" />
+        <span class="text-danger" asp-validation-for="CodRes"></span>
+    </div>
+    @*Nombre del profesor*@    
+    <div class="mb-3">
+        <label asp-for="ProfName" class="form-label"></label>
+        <input asp-for="ProfName" class="form-control" />
+        <span class="text-danger" asp-validation-for="ProfName"></span>
+    </div>
+    @*Correo institucional*@    
+    <div class="mb-3">
+        <label asp-for="InstEmail" class="form-label"></label>
+        <input asp-for="InstEmail" class="form-control" />
+        <span class="text-danger" asp-validation-for="InstEmail"></span>
+    </div>
+    @*Laboratorio*@
+    <div class="mb-3">
+        <label asp-for="LabName" class="form-label"></label>
+        <select asp-for="LabName" class="form-control">
+            <option value="">Seleccione...</option>
+            @if (ViewBag.Labs is IEnumerable<string> labs)
+            {
+                foreach (var lab in labs)
+                {
+                    <option value="@lab" selected="@(Model?.LabName == lab ? "selected" : null)">@lab</option>
+                }
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="LabName"></span>
+    </div>
+    @*Hora de inicio*@    
+    <div class="mb-3">
+        <label asp-for="HoraInicio" class="form-label"></label>
+        <input asp-for="HoraInicio" class="form-control" />
+        <span class="text-danger" asp-validation-for="HoraInicio"></span>
+    </div>
+    @*Hora de fin*@    
+    <div class="mb-3">
+        <label asp-for="HoraFin" class="form-label"></label>
+        <input asp-for="HoraFin" class="form-control" />
+        <span class="text-danger" asp-validation-for="HoraFin"></span>
+    </div>
+    @*Motivo de reserva*@    
+    <div class="mb-3">
+        <label asp-for="Motivo" class="form-label"></label>
+        <input asp-for="Motivo" class="form-control" />
+        <span class="text-danger" asp-validation-for="Motivo"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Ingresar Reserva</button>
+
+    <a class="btn btn-secondary" asp-action="Index">Volver</a>
+
+</form>
