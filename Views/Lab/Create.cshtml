@@ -55,7 +55,7 @@
 
                     <div class="col-md-6">
                         <label asp-for="ProfName" class="form-label"></label>
-                        <input asp-for="ProfName" class="form-control" placeholder="Nombre" />
+                        <input asp-for="ProfName" class="form-control" placeholder="Nombre del profesor" />
                         <span class="text-danger" asp-validation-for="ProfName"></span>
                     </div>
 
@@ -79,6 +79,12 @@
                         </select>
                         <span class="text-danger" asp-validation-for="LabName"></span>
                         <div class="lab-help mt-1">Seleccione el laboratorio disponible para la reserva.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="FechaRes" class="form-label"></label>
+                        <input asp-for="FechaRes" type="date" class="form-control" />
+                        <span class="text-danger" asp-validation-for="FechaRes"></span>
                     </div>
 
                     <div class="col-md-6">
